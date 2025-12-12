@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 { text-align: center; color: #333; margin-bottom: 30px; }
+        .input-group { position: relative; margin-bottom: 20px; }
+        .input-group input {
+            width: 100%;
+            padding: 15px 45px 15px 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+        .input-group input:focus { border-color: #764ba2; box-shadow: 0 0 5px rgba(118, 75, 162, 0.3); }
+        .input-group i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            cursor: pointer;
+        }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .link { text-align: center; margin-top: 15px; font-size: 14px; }
+        .link a { color: #764ba2; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Create Account</h2>
+    <form id="regForm">
+        <div class="input-group">
+            <input type="text" placeholder="First Name" id="fname" required>
+        </div>
+        <div class="input-group">
+            <input type="text" placeholder="Last Name" id="lname" required>
+        </div>
+        <div class="input-group">
+            <input type="tel" placeholder="Mobile Number" id="phone" required>
+        </div>
+        <div class="input-group">
+            <input type="password" placeholder="Password" id="pass" required>
+            <i class="fas fa-eye" onclick="togglePass('pass', this)"></i>
+        </div>
+        <div class="input-group">
+            <input type="password" placeholder="Confirm Password" id="confPass" required>
+            <i class="fas fa-eye" onclick="togglePass('confPass', this)"></i>
+        </div>
+        <button type="submit" class="btn">Register</button>
+    </form>
+    <div class="link">Already have an account? <a href="#">Login</a></div>
+</div>
+
+<script type="module">
+  // Import Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDsi6qGlSMUQqQpo8y7HfR5p3T7wSAV48E",
+    authDomain: "sms4-6e398.firebaseapp.com",
+    databaseURL: "https://sms4-6e398-default-rtdb.firebaseio.com",
+    projectId: "sms4-6e398",
+    storageBucket: "sms4-6e398.firebasestorage.app",
+    messagingSenderId: "821121149852",
+    appId: "1:821121149852:web:af1e625ea786d63f877659"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  // Note: For real registration, you'll need logic to handle phone auth or fake email auth based on phone number
+  
+  document.getElementById('regForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const p1 = document.getElementById('pass').value;
+      const p2 = document.getElementById('confPass').value;
+      
+      if(p1 !== p2) {
+          alert("Passwords do not match!");
+          return;
+      }
+      // Simulate Success
+      alert("Account Created! Redirecting to Home...");
+      window.location.href = "home.html";
+  });
+</script>
+
+<script>
+    // Traditional JS for UI Toggles
+    function togglePass(inputId, icon) {
+        const input = document.getElementById(inputId);
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            input.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
+</body>
+</html>
