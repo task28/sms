@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Group Chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reusing Chat CSS for consistency */
+        body { margin: 0; background: #f0f2f5; font-family: sans-serif; height: 100vh; display: flex; flex-direction: column; }
+        header { background: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; }
+        
+        .group-details { display: flex; align-items: center; }
+        .group-icon { width: 45px; height: 45px; background: orange; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; margin-right: 10px; }
+        
+        .add-member-btn { background: #f0f2f5; border: none; padding: 8px 12px; border-radius: 15px; cursor: pointer; color: #333; font-size: 12px; }
+        
+        #chat-box { flex: 1; padding: 20px; overflow-y: auto; background-image: radial-gradient(#ddd 1px, transparent 1px); background-size: 20px 20px;}
+        
+        .message { margin-bottom: 10px; max-width: 70%; padding: 10px; border-radius: 10px; font-size: 14px; }
+        .sender-name { font-size: 10px; color: #666; margin-bottom: 2px; display: block; }
+        .incoming { align-self: flex-start; background: white; float: left; clear: both; }
+        .outgoing { align-self: flex-end; background: #764ba2; color: white; float: right; clear: both; }
+
+        .footer { background: white; padding: 10px; display: flex; border-top: 1px solid #ddd; }
+        input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 20px; margin-right: 10px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="group-details">
+        <a href="home.html" style="margin-right:15px; color:#333;"><i class="fas fa-arrow-left"></i></a>
+        <div class="group-icon"><i class="fas fa-users"></i></div>
+        <div>
+            <h4 style="margin:0;">Best Friends</h4>
+            <small>3/5 Members</small>
+        </div>
+    </div>
+    <button class="add-member-btn" onclick="addMember()"><i class="fas fa-plus"></i> Add</button>
+</header>
+
+<div id="chat-box">
+    <!-- Messages -->
+    <div class="message incoming">
+        <span class="sender-name">Mike</span>
+        Hey guys!
+    </div>
+    <div class="message outgoing">
+        Hello!
+    </div>
+</div>
+
+<div class="footer">
+    <input type="text" placeholder="Message group...">
+    <button style="border:none; background:none; color:#764ba2; font-size:1.5rem;"><i class="fas fa-paper-plane"></i></button>
+</div>
+
+<script>
+    function addMember() {
+        // Logic to check if members < 5 then open friend selector
+        let currentMembers = 3;
+        if(currentMembers >= 5) {
+            alert("Group full! Maximum 5 members allowed.");
+        } else {
+            let friend = prompt("Enter username to add:");
+            if(friend) alert(friend + " added!");
+        }
+    }
+</script>
+</body>
+</html>
